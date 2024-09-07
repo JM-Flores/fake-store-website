@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: 'https://api.escuelajs.co/api/v1',
+    baseURL: 'https://dummyjson.com',
 })
 
 class APIClient<T> {
@@ -12,7 +12,7 @@ class APIClient<T> {
     }
 
     getAll = (config: AxiosRequestConfig) => {
-        return axiosInstance.get<T[]>(this.endpoint, config).then(res => res.data);
+        return axiosInstance.get<T>(this.endpoint, config).then(res => res.data);
     }
 }
 
