@@ -22,9 +22,18 @@ const ProductCard = ({ product }: Props) => {
         src={product.images[0]}
       />
       <CardBody>
-        <Heading fontSize={"lg"}>{product.title}</Heading>
+        <Heading fontSize={"lg"} fontWeight={"md"}>
+          {product.title}
+        </Heading>
         <Text fontSize={"2xl"}>${product.price}</Text>
-        <Button>Add to Cart</Button>
+        <Button
+          background={"yellow.300"}
+          fontSize={12}
+          height={"auto"}
+          padding={2}
+        >
+          Add to Cart
+        </Button>
       </CardBody>
     </Card>
   );
