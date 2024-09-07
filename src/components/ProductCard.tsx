@@ -7,7 +7,14 @@ interface Props {
 
 const ProductCard = ({ product }: Props) => {
   return (
-    <Card variant="outline" borderRadius={5} overflow={"hidden"}>
+    <Card
+      borderRadius={5}
+      overflow={"hidden"}
+      boxShadow="none" // No shadow by default
+      _hover={{
+        boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
+      }}
+    >
       <Image
         height={200}
         width={"100%"}
