@@ -10,7 +10,7 @@ const ProductCard = ({ product }: Props) => {
     <Card
       borderRadius={5}
       overflow={"hidden"}
-      boxShadow="none" // No shadow by default
+      boxShadow="none"
       _hover={{
         boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
       }}

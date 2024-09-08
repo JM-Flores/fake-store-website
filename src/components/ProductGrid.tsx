@@ -1,11 +1,13 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import useProducts from "../hooks/useProducts";
 import ProductCard from "./ProductCard";
 
 const ProductGrid = () => {
-  const { data } = useProducts();
+  const { data, error, isLoading } = useProducts();
 
-  console.log(data);
+  if (error) return <Text>{error.message}</Text>;
+
+  if (isLoading) return <Spinner />;
 
   return (
     <SimpleGrid

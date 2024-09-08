@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { mountStoreDevtool } from "simple-zustand-devtools";
 
 type SortOrder = 'asc' | 'desc';
 
@@ -26,5 +27,8 @@ const useProductQueryStore = create<ProductQueryStore>(set => ({
     setSearchText: (searchText) => set((store) => ({productQuery: {...store.productQuery, searchText}})),
 }));
 
+if (process.env.NODE_ENV === 'development') {
+    mountStoreDevtool('Product Query Store', useProductQueryStore);
+  }
 
 export default useProductQueryStore;

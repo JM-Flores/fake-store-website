@@ -1,14 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import ProductFetchResponse from "../entities/ProductsFetchResponse";
 import APIClient from "../services/apiClient";
+import useProductQueryStore from "../store/productQueryStore";
 
-const apiClient = new APIClient<ProductFetchResponse>("/products");
 
 const useProducts = () => {
+    const productQuery = useProductQueryStore(s => s.productQuery);
+    const endpoint = productQuery.searchText ? '/products/search' : '/products';
+
+    const apiClient = new APIClient<ProductFetchResponse>(endpoint);
+
     return useQuery({
-        queryKey: ['products'],
+        queryKey: ['products', productQuery],
         queryFn: async () => {
-            const response = await apiClient.getAll({ params: {} });
+
+            const response = productQuery.searchText ? 
+                await apiClient.getAll({ params: {q: productQuery.searchText} }) :
+                await apiClient.getAll({ params: {} });
             return response.products;
         }
     });
