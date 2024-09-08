@@ -6,7 +6,10 @@ import useProductQueryStore from "../store/productQueryStore";
 
 const useProducts = () => {
     const productQuery = useProductQueryStore(s => s.productQuery);
-    const endpoint = productQuery.searchText ? '/products/search' : '/products';
+
+    const endpoint = productQuery.searchText ? '/search' :
+                productQuery.category ? '/category/' + productQuery.category :
+                '';
 
     const apiClient = new APIClient<ProductFetchResponse>(endpoint);
 
@@ -15,8 +18,10 @@ const useProducts = () => {
         queryFn: async () => {
 
             const response = productQuery.searchText ? 
-                await apiClient.getAll({ params: {q: productQuery.searchText} }) :
-                await apiClient.getAll({ params: {} });
+                await apiClient.getAll({ 
+                    params: {q: productQuery.searchText} 
+                }) :
+                await apiClient.getAll();
             return response.products;
         }
     });

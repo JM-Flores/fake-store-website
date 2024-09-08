@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: 'https://dummyjson.com',
+    baseURL: 'https://dummyjson.com/products',
 })
 
 class APIClient<T> {
@@ -11,7 +11,7 @@ class APIClient<T> {
         this.endpoint = endpoint;
     }
 
-    getAll = (config: AxiosRequestConfig) => {
+    getAll = (config?: AxiosRequestConfig) => {
         return axiosInstance.get<T>(this.endpoint, config).then(res => res.data);
     }
 }
