@@ -11,6 +11,11 @@ const CategoryList = () => {
   if (isLoading) return <Spinner />;
   return (
     <List paddingLeft={5}>
+      <ListItem>
+        <Button variant={"link"} onClick={() => setCategory("")}>
+          All Products
+        </Button>
+      </ListItem>
       {categories?.map((category) => (
         <ListItem key={category.slug}>
           <Button variant={"link"} onClick={() => setCategory(category.slug)}>
