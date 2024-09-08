@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <Grid templateColumns={"200px 1fr"}>
+      <Grid templateColumns={"220px 1fr"}>
         <SideBar />
         <ProductGrid />
       </Grid>
