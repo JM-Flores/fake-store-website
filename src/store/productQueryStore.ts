@@ -21,10 +21,10 @@ interface ProductQueryStore {
 
 const useProductQueryStore = create<ProductQueryStore>(set => ({
     productQuery: {},
-    setCategory: (category) => set((store) => ({productQuery: {...store.productQuery, category}})),
+    setCategory: (category) => set((store) => ({productQuery: {...store.productQuery, category, searchText: ''}})),
     setSortBy: (sortBy) => set((store) => ({productQuery: {...store.productQuery, sortBy}})),
     setSortOrder: (sortOrder) => set((store) => ({productQuery: {...store.productQuery, sortOrder}})),
-    setSearchText: (searchText) => set((store) => ({productQuery: {...store.productQuery, searchText}})),
+    setSearchText: (searchText) => set((store) => ({productQuery: {...store.productQuery, searchText, category: ''}})),
 }));
 
 if (process.env.NODE_ENV === 'development') {
