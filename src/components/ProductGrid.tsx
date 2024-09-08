@@ -8,7 +8,15 @@ const ProductGrid = () => {
   console.log(data);
 
   return (
-    <SimpleGrid columns={5} gap={2} marginTop={5}>
+    <SimpleGrid
+      columns={{
+        base: 2,
+        md: 3,
+        lg: 5,
+      }}
+      gap={2}
+      padding={5}
+    >
       {data?.map((product) => (
         <ProductCard product={product} key={product.id} />
       ))}

@@ -18,7 +18,7 @@ const ProductCard = ({ product }: Props) => {
       <Image
         height={200}
         width={"100%"}
-        objectFit={"cover"}
+        objectFit={"contain"}
         src={product.images[0]}
       />
       <CardBody>
