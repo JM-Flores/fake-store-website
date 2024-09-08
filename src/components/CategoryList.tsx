@@ -10,7 +10,7 @@ const CategoryList = () => {
   if (error) throw error;
   if (isLoading) return <Spinner />;
   return (
-    <List paddingLeft={5}>
+    <List paddingLeft={3}>
       <ListItem>
         <Button
           variant={"link"}

@@ -1,5 +1,6 @@
 import { Heading, theme, VStack } from "@chakra-ui/react";
 import CategoryList from "./CategoryList";
+import SortSelector from "./SortSelector";
 
 const SideBar = () => {
   return (
@@ -8,7 +9,9 @@ const SideBar = () => {
       padding={5}
       borderRight={`1px solid ${theme.colors.gray[200]}`}
     >
-      <Heading fontSize={"xl"}>Categories</Heading>
+      <Heading fontSize={"md"}>Sort</Heading>
+      <SortSelector />
+      <Heading fontSize={"md"}>Categories</Heading>
       <CategoryList />
     </VStack>
   );
