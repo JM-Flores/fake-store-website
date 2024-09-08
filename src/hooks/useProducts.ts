@@ -21,7 +21,12 @@ const useProducts = () => {
                 await apiClient.getAll({ 
                     params: {q: productQuery.searchText} 
                 }) :
-                await apiClient.getAll();
+                await apiClient.getAll({
+                    params: {
+                        sortBy: productQuery.sortBy,
+                        order: productQuery.sortOrder
+                    }
+                });
             return response.products;
         }
     });
