@@ -15,7 +15,7 @@ const CategoryList = () => {
         <Button
           variant={"link"}
           onClick={() => setCategory("")}
-          fontWeight={selectedCategory === "" ? "bold" : "normal"}
+          fontWeight={!selectedCategory ? "bold" : "normal"}
         >
           All Products
         </Button>
