@@ -1,5 +1,6 @@
 import { Button, Card, CardBody, Heading, Image, Text } from "@chakra-ui/react";
 import Product from "../entities/Product";
+import Rating from "./Rating";
 
 interface Props {
   product: Product;
@@ -26,11 +27,13 @@ const ProductCard = ({ product }: Props) => {
           {product.title}
         </Heading>
         <Text fontSize={"2xl"}>${product.price}</Text>
+        <Rating rating={product.rating} />
         <Button
           background={"yellow.300"}
           fontSize={12}
           height={"auto"}
           padding={2}
+          marginTop={2}
         >
           Add to Cart
         </Button>

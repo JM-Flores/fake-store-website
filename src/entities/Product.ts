@@ -4,6 +4,7 @@ interface Product {
     price: number;
     description: string;
     images: string[];
+    rating: number;
 }
 
 export default Product;
