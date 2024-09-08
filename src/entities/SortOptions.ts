@@ -1,10 +1,9 @@
 type sortOption = [string, string];
 
 const sortOptions: sortOption[] = [
-    ['', 'Relevance'],
-    ['title', 'Title'],
+    ['rating', 'Rating'],
     ['price', 'Price'],
-    ['rating', 'Rating']
+    ['title', 'Title']
 ]
 
 export default sortOptions;

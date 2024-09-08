@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
+import sortOptions from "../entities/SortOptions";
 
 type SortOrder = 'asc' | 'desc';
 
@@ -20,7 +21,7 @@ interface ProductQueryStore {
 }
 
 const useProductQueryStore = create<ProductQueryStore>(set => ({
-    productQuery: {},
+    productQuery: { sortBy: sortOptions[0][0], sortOrder: 'desc'},
     setCategory: (category) => set((store) => ({productQuery: {...store.productQuery, category, searchText: ''}})),
     setSortBy: (sortBy) => set((store) => ({productQuery: {...store.productQuery, sortBy}})),
     setSortOrder: (sortOrder) => set((store) => ({productQuery: {...store.productQuery, sortOrder}})),

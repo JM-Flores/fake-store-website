@@ -14,6 +14,7 @@ const ProductCard = ({ product }: Props) => {
       boxShadow="none"
       _hover={{
         boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
+        transition: "box-shadow 0.3s ease-in-out",
       }}
     >
       <Image
