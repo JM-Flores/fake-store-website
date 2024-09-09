@@ -11,6 +11,7 @@ interface Props {
 const ProductCard = ({ product }: Props) => {
   return (
     <Card
+      padding={3}
       borderRadius={5}
       overflow={"hidden"}
       boxShadow="none"
@@ -26,7 +27,7 @@ const ProductCard = ({ product }: Props) => {
           objectFit={"contain"}
           src={product.thumbnail}
         />
-        <CardBody>
+        <CardBody padding={0} paddingTop={3}>
           <Heading fontSize={"lg"} fontWeight={"md"}>
             {product.title}
           </Heading>
