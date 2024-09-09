@@ -23,7 +23,7 @@ const ProductCard = ({ product }: Props) => {
           height={200}
           width={"100%"}
           objectFit={"contain"}
-          src={product.images[0]}
+          src={product.thumbnail}
         />
         <CardBody>
           <Heading fontSize={"lg"} fontWeight={"md"}>
