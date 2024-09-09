@@ -1,9 +1,14 @@
 import { Select, VStack } from "@chakra-ui/react";
 import sortOptions from "../entities/SortOptions";
 import useUpdateURLQuery from "../hooks/useUpdateURLQuery";
-import { SortOrder } from "../store/productQueryStore";
+import useProductQueryStore, { SortOrder } from "../store/productQueryStore";
 
 const SortSelector = () => {
+  const selectedSortBy = useProductQueryStore((s) => s.productQuery.sortBy);
+  const selectedSortOrder = useProductQueryStore(
+    (s) => s.productQuery.sortOrder
+  );
+
   const { updateSearchParams } = useUpdateURLQuery();
 
   const updateSortBy = (sortBy: string) => {
@@ -16,7 +21,7 @@ const SortSelector = () => {
   return (
     <VStack paddingLeft={3}>
       <Select
-        defaultValue={sortOptions[0][0]}
+        value={selectedSortBy || sortOptions[0][0]}
         onChange={(event) => updateSortBy(event.target.value)}
       >
         {sortOptions.map((option) => (
@@ -26,7 +31,7 @@ const SortSelector = () => {
         ))}
       </Select>
       <Select
-        defaultValue={"desc"}
+        value={selectedSortOrder || "desc"}
         onChange={(event) =>
           updateSortOrder(event.target.value as "asc" | "desc")
         }

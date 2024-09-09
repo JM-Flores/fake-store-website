@@ -10,7 +10,13 @@ const HomePage = () => {
       display={"flex"}
       justifyContent={"center"}
     >
-      <SimpleGrid columns={4} background={"white"} padding={5} gap={5}>
+      <SimpleGrid
+        columns={3}
+        background={"white"}
+        padding={5}
+        gap={5}
+        width={"1000px"}
+      >
         {homePageProductQueries.map((productQuery) => (
           <Box key={productQuery.title}>
             <ProductQueryCard

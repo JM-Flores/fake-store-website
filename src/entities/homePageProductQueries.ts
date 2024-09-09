@@ -11,6 +11,13 @@ const homePageProductQueries: HomepageProductQuery[] = [
         query: {}
     },
     {
+        title: 'Shop Top Rated Products',
+        query: {
+            sortBy: 'rating',
+            sortOrder: 'desc'
+        }
+    },
+    {
         title: 'Shop Smartphones',
         query: {
             category: 'smartphones'
