@@ -21,7 +21,7 @@ interface ProductQueryStore {
     resetQuery: () => void;
 }
 
-const defaultQuery = { sortBy: sortOptions[0][0], sortOrder: 'desc' as SortOrder};
+export const defaultQuery = { sortBy: sortOptions[0][0], sortOrder: 'desc' as SortOrder};
 
 const useProductQueryStore = create<ProductQueryStore>(set => ({
     productQuery: defaultQuery,

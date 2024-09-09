@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import useProductQueryStore, { ProductQuery, SortOrder } from "../store/productQueryStore";
+import useProductQueryStore, { defaultQuery, ProductQuery, SortOrder } from "../store/productQueryStore";
 import { useEffect } from "react";
 
 const useUpdateQueryState = () => {
@@ -8,16 +8,22 @@ const useUpdateQueryState = () => {
     const setQuery = useProductQueryStore(s => s.setQuery);
 
     useEffect(() => {
-        const query: ProductQuery = {
-            category: searchParams.get('category') || undefined,
-            sortBy: searchParams.get('sortBy') || undefined,
-            sortOrder: searchParams.get('sortOrder') as SortOrder || undefined,
-            searchText: searchParams.get('searchText') || undefined,
-        };
+        if (searchParams.size === 0) {
+            setQuery(defaultQuery);
+        }
+        else {
 
-        // console.log(query);
+            const query: ProductQuery = {
+                category: searchParams.get('category') || undefined,
+                sortBy: searchParams.get('sortBy') || undefined,
+                sortOrder: searchParams.get('sortOrder') as SortOrder || undefined,
+                searchText: searchParams.get('searchText') || undefined,
+            };
 
-        setQuery(query);
+            // console.log(query);
+
+            setQuery(query);
+        }
     }, [searchParams, setQuery]);
 
 }
