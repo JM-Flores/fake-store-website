@@ -13,7 +13,8 @@ const useUpdateURLQuery = () => {
     
         // Iterate over the properties in the query object
         for (const [key, value] of Object.entries(query)) {
-            newSearchParams.set(key, value); // Set or update the parameter
+            if (!value) newSearchParams.delete(key)
+            else newSearchParams.set(key, value);
         }
     
         // Update the URL with the new query parameters

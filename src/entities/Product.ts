@@ -12,6 +12,10 @@ interface Product {
     reviews: {}[];
     thumbnail: string;
     images: string[];
+    meta: {
+        createdAt: string,
+        updatedAt: string,
+    },
 }
 
 export default Product;
