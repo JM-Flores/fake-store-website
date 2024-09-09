@@ -6,8 +6,8 @@ const apiClient = new APIClient<Category[]>('/categories');
 
 const useCategories = () => {
     return useQuery({
-        queryKey: ['category'],
-        queryFn: () => apiClient.getAll({})
+        queryKey: ['categories'],
+        queryFn: () => apiClient.getAll()
     })
 }
 
