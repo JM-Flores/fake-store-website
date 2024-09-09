@@ -16,6 +16,7 @@ import Rating from "../components/Rating";
 import useProduct from "../hooks/useProduct";
 import calculateDiscountPrice from "../services/calculateDiscountedPrice";
 import ProductImageSlide from "../components/ProductImageSlide";
+import formatPrice from "../services/formatPrice";
 
 const ProductDetailPage = () => {
   const { id: productId } = useParams();
@@ -58,10 +59,11 @@ const ProductDetailPage = () => {
           <Text>Brand: {product?.brand}</Text>
           <Box>
             <Text fontSize={"3xl"}>
-              $
-              {calculateDiscountPrice(
-                product?.price,
-                product?.discountPercentage
+              {formatPrice(
+                calculateDiscountPrice(
+                  product?.price,
+                  product?.discountPercentage
+                )
               )}
             </Text>
             <HStack>
@@ -70,7 +72,7 @@ const ProductDetailPage = () => {
                 textDecoration={"line-through"}
                 color={"gray.500"}
               >
-                ${product?.price}
+                {formatPrice(product?.price)}
               </Text>
               <Text fontSize={"sm"}>-{product?.discountPercentage}%</Text>
             </HStack>

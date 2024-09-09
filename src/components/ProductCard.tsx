@@ -2,6 +2,7 @@ import { Button, Card, CardBody, Heading, Image, Text } from "@chakra-ui/react";
 import Product from "../entities/Product";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
+import formatPrice from "../services/formatPrice";
 
 interface Props {
   product: Product;
@@ -29,7 +30,7 @@ const ProductCard = ({ product }: Props) => {
           <Heading fontSize={"lg"} fontWeight={"md"}>
             {product.title}
           </Heading>
-          <Text fontSize={"2xl"}>${product.price}</Text>
+          <Text fontSize={"2xl"}>{formatPrice(product.price)}</Text>
           <Rating rating={product.rating} />
           <Button
             background={"yellow.300"}
