@@ -1,8 +1,18 @@
-import { Button, Card, CardBody, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Card,
+  CardBody,
+  Heading,
+  HStack,
+  Image,
+  Text,
+} from "@chakra-ui/react";
 import Product from "../entities/Product";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
 import formatPrice from "../services/formatPrice";
+import DiscountBadge from "./DiscountBadge";
 
 interface Props {
   product: Product;
@@ -31,7 +41,12 @@ const ProductCard = ({ product }: Props) => {
           <Heading fontSize={"lg"} fontWeight={"md"}>
             {product.title}
           </Heading>
-          <Text fontSize={"2xl"}>{formatPrice(product.price)}</Text>
+          <HStack align={"center"}>
+            <Text fontSize={"2xl"}>{formatPrice(product.price)}</Text>
+            <Box paddingTop={"1px"}>
+              <DiscountBadge discount={product.discountPercentage} />
+            </Box>
+          </HStack>
           <Rating rating={product.rating} />
           <Button
             background={"yellow.300"}

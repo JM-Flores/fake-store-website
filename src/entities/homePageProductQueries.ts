@@ -18,6 +18,13 @@ const homePageProductQueries: HomepageProductQuery[] = [
         }
     },
     {
+        title: 'Shop Highest Discount',
+        query: {
+            sortBy: 'discountPercentage',
+            sortOrder: 'desc'
+        }
+    },
+    {
         title: 'Shop Smartphones',
         query: {
             category: 'smartphones'
