@@ -1,4 +1,4 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box, SimpleGrid, VStack } from "@chakra-ui/react";
 import ProductQueryCard from "../components/ProductQueryCard";
 import homePageProductQueries from "../entities/homePageProductQueries";
 
@@ -10,22 +10,18 @@ const HomePage = () => {
       display={"flex"}
       justifyContent={"center"}
     >
-      <SimpleGrid
-        columns={3}
-        background={"white"}
-        padding={5}
-        gap={5}
-        width={"1000px"}
-      >
-        {homePageProductQueries.map((productQuery) => (
-          <Box key={productQuery.title}>
-            <ProductQueryCard
-              title={productQuery.title}
-              query={productQuery.query}
-            />
-          </Box>
-        ))}
-      </SimpleGrid>
+      <VStack>
+        <SimpleGrid columns={3} paddingTop={5} gap={1} width={"1000px"}>
+          {homePageProductQueries.map((productQuery) => (
+            <Box key={productQuery.title}>
+              <ProductQueryCard
+                title={productQuery.title}
+                query={productQuery.query}
+              />
+            </Box>
+          ))}
+        </SimpleGrid>
+      </VStack>
     </Box>
   );
 };

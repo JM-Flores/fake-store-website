@@ -31,9 +31,15 @@ const homePageProductQueries: HomepageProductQuery[] = [
         }
     },
     {
-        title: 'Shop Furnitures',
+        title: 'Shop Groceries',
         query: {
-            category: 'furniture'
+            category: 'groceries'
+        }
+    },
+    {
+        title: 'Shop Sports Accessories',
+        query: {
+            category: 'sports-accessories'
         }
     },
 ]
