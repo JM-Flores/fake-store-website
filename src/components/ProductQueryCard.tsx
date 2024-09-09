@@ -1,6 +1,7 @@
 import { Card, CardBody, Heading } from "@chakra-ui/react";
-import { ProductQuery } from "../store/productQueryStore";
 import { Link } from "react-router-dom";
+import getLinkWithParams from "../services/getLinkWithParams";
+import { ProductQuery } from "../store/productQueryStore";
 
 interface Props {
   title: string;
@@ -10,7 +11,7 @@ interface Props {
 const ProductQueryCard = ({ title, query }: Props) => {
   return (
     <Card>
-      <Link to="/products">
+      <Link to={getLinkWithParams("/products", query)}>
         <Heading>{title}</Heading>
         <CardBody></CardBody>
       </Link>

@@ -9,7 +9,19 @@ const homePageProductQueries: HomepageProductQuery[] = [
     {
         title: 'Shop All Products',
         query: {}
-    }
+    },
+    {
+        title: 'Shop Smartphones',
+        query: {
+            category: 'smartphones'
+        }
+    },
+    {
+        title: 'Shop Furnitures',
+        query: {
+            category: 'furniture'
+        }
+    },
 ]
 
 export default homePageProductQueries;

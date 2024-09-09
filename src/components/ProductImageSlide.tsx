@@ -1,12 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import {
-  border,
-  Box,
-  Divider,
-  HStack,
-  IconButton,
-  Image,
-} from "@chakra-ui/react";
+import { Box, Divider, HStack, IconButton, Image } from "@chakra-ui/react";
 import { useState } from "react";
 
 const ProductImageSlide = ({ images }: { images: string[] }) => {

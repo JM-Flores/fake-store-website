@@ -1,23 +1,28 @@
+import { SearchIcon } from "@chakra-ui/icons";
 import {
   IconButton,
   Input,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
 import { useRef } from "react";
-import useProductQueryStore from "../store/productQueryStore";
+import useUpdateURLQuery from "../hooks/useUpdateURLQuery";
 
 const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null);
-  const setSearchText = useProductQueryStore((s) => s.setSearchText);
+
+  const { updateSearchParams } = useUpdateURLQuery();
+
+  const updateSearchText = (searchText: string) => {
+    updateSearchParams({ searchText: searchText });
+  };
 
   return (
     <>
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          if (ref.current) setSearchText(ref.current.value);
+          if (ref.current) updateSearchText(ref.current.value);
         }}
       >
         <InputGroup>

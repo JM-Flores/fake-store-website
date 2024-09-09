@@ -5,17 +5,16 @@ import {
   Grid,
   Heading,
   HStack,
-  Image,
   Spinner,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import ProductImageSlide from "../components/ProductImageSlide";
 import QuantitySelector from "../components/QuantitySelector";
 import Rating from "../components/Rating";
 import useProduct from "../hooks/useProduct";
 import calculateDiscountPrice from "../services/calculateDiscountedPrice";
-import ProductImageSlide from "../components/ProductImageSlide";
 import formatPrice from "../services/formatPrice";
 
 const ProductDetailPage = () => {

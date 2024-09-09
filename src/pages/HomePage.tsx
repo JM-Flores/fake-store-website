@@ -12,7 +12,7 @@ const HomePage = () => {
     >
       <SimpleGrid columns={4} background={"white"} padding={5} gap={5}>
         {homePageProductQueries.map((productQuery) => (
-          <Box>
+          <Box key={productQuery.title}>
             <ProductQueryCard
               title={productQuery.title}
               query={productQuery.query}

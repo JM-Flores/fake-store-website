@@ -1,8 +1,8 @@
 import { Box, HStack, Image } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import shopLogo from "../assets/shop-logo.svg";
-import SearchInput from "./SearchInput";
-import { Link, useNavigate } from "react-router-dom";
 import useProductQueryStore from "../store/productQueryStore";
+import SearchInput from "./SearchInput";
 
 const NavBar = () => {
   const navigate = useNavigate();

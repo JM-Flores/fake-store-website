@@ -1,8 +1,11 @@
 import { Box, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import useProducts from "../hooks/useProducts";
 import ProductCard from "./ProductCard";
+import useUpdateQueryState from "../hooks/useUpdateQueryState";
 
 const ProductGrid = () => {
+  useUpdateQueryState();
+
   const { data, error, isLoading } = useProducts();
 
   if (error) return <Text>{error.message}</Text>;

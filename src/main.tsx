@@ -1,12 +1,11 @@
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import App from "./App.tsx";
-import "./index.css";
-import theme from "./theme.ts";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider } from "react-router-dom";
+import "./index.css";
 import router from "./routes.tsx";
+import theme from "./theme.ts";
 
 const queryClient = new QueryClient();
 
