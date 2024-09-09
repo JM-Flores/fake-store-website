@@ -37,6 +37,7 @@ const ProductDetailPage = () => {
         width={"1000px"}
         templateColumns={"2fr 3fr"}
         padding={5}
+        gap={3}
       >
         <VStack>
           <ProductImageSlide images={product?.images || []} />

@@ -1,5 +1,12 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { Box, Divider, HStack, IconButton, Image } from "@chakra-ui/react";
+import {
+  border,
+  Box,
+  Divider,
+  HStack,
+  IconButton,
+  Image,
+} from "@chakra-ui/react";
 import { useState } from "react";
 
 const ProductImageSlide = ({ images }: { images: string[] }) => {
@@ -51,6 +58,10 @@ const ProductImageSlide = ({ images }: { images: string[] }) => {
               border="1px solid"
               borderColor="gray.200"
               onClick={() => setCurrentImage(src)}
+              _hover={{
+                borderColor: "gray.600",
+                transition: "border-color 0.2s ease-in-out",
+              }}
             >
               <Image
                 src={src}
