@@ -1,5 +1,4 @@
 import {
-  background,
   Box,
   Button,
   Divider,
@@ -7,22 +6,16 @@ import {
   Heading,
   HStack,
   Image,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
   Spinner,
   Text,
-  theme,
   VStack,
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import useProduct from "../hooks/useProduct";
-import { inherits } from "util";
-import Rating from "../components/Rating";
 import QuantitySelector from "../components/QuantitySelector";
+import Rating from "../components/Rating";
+import useProduct from "../hooks/useProduct";
 import calculateDiscountPrice from "../services/calculateDiscountedPrice";
+import ProductImageSlide from "../components/ProductImageSlide";
 
 const ProductDetailPage = () => {
   const { id: productId } = useParams();
@@ -46,7 +39,7 @@ const ProductDetailPage = () => {
         padding={5}
       >
         <VStack>
-          <Image src={product?.images[0]} />
+          <ProductImageSlide images={product?.images || []} />
         </VStack>
         <VStack display={"flex"} alignItems={"baseline"} gap={4}>
           <Heading
