@@ -1,12 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./pages/Layout";
-import ProductsPage from "./pages/ProductsPage";
+import ProductsListingPage from "./pages/ProductsListingPage";
+import ProductPage from "./pages/ProductPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    children: [{ index: true, element: <ProductsPage /> }],
+    children: [
+      { index: true, element: <ProductsListingPage /> },
+      { path: "product/:id", element: <ProductPage /> },
+    ],
   },
 ]);
 
