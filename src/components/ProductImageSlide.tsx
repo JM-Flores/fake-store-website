@@ -1,11 +1,11 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { Box, HStack, IconButton, Image, VStack } from "@chakra-ui/react";
+import { Box, Divider, HStack, IconButton, Image } from "@chakra-ui/react";
 import { useState } from "react";
 
 const ProductImageSlide = ({ images }: { images: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentImage, setCurrentImage] = useState(images[0]);
-  const maxVisibleImages = 2;
+  const maxVisibleImages = 3;
 
   // Calculate the maximum number of images to show
   const visibleImages = images.slice(
@@ -34,6 +34,7 @@ const ProductImageSlide = ({ images }: { images: string[] }) => {
   return (
     <>
       <Image src={currentImage} />
+      <Divider />
       <HStack spacing={4} align="center">
         {showLeftArrow && (
           <IconButton
@@ -47,13 +48,15 @@ const ProductImageSlide = ({ images }: { images: string[] }) => {
             <Box
               key={index}
               flex="1 0 auto"
+              border="1px solid"
+              borderColor="gray.200"
               onClick={() => setCurrentImage(src)}
             >
               <Image
                 src={src}
                 alt={`Image ${index}`}
-                boxSize="100px"
-                objectFit="cover"
+                boxSize={20}
+                objectFit="contain"
               />
             </Box>
           ))}

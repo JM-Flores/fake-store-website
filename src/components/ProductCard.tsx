@@ -18,7 +18,7 @@ const ProductCard = ({ product }: Props) => {
         transition: "box-shadow 0.3s ease-in-out",
       }}
     >
-      <Link to={"product/" + product.id}>
+      <Link to={`/products/${product.id}`}>
         <Image
           height={200}
           width={"100%"}

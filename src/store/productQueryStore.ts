@@ -4,7 +4,7 @@ import sortOptions from "../entities/SortOptions";
 
 type SortOrder = 'asc' | 'desc';
 
-interface ProductQuery {
+export interface ProductQuery {
     category?: string;
     sortBy?: string;
     sortOrder?: SortOrder;
