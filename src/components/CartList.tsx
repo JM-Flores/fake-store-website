@@ -8,8 +8,9 @@ import {
 } from "@chakra-ui/react";
 import useCartStore from "../store/cartStore";
 import CartItem from "./CartItem";
+import CartDetails from "../entities/CartDetails";
 
-const CartList = () => {
+const CartList = ({ cartDetails }: { cartDetails: CartDetails }) => {
   const cart = useCartStore((s) => s.cartItems);
   const clearAll = useCartStore((s) => s.clearAll);
 
@@ -28,8 +29,8 @@ const CartList = () => {
           Delete all
         </Button>
       </HStack>
-      {cart.map((item) => (
-        <CartItem item={item} key={item.productId} />
+      {cartDetails.map((itemDetail) => (
+        <CartItem item={itemDetail} key={itemDetail.product.id} />
       ))}
     </Stack>
   );

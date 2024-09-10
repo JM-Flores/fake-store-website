@@ -3,7 +3,9 @@ import calculateDiscountPrice from "./calculateDiscountedPrice";
 
 const getCartTotalPrice = (cart: CartDetails) => {
     return cart.reduce((acc,curr) => (
-        acc +  calculateDiscountPrice(curr.product.price, curr.product.discountPercentage)* curr.quantity
+        curr.selected ?
+        acc +  calculateDiscountPrice(curr.product.price, curr.product.discountPercentage)* curr.quantity :
+        acc
     ), 0);
 }
 

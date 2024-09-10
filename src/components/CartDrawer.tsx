@@ -39,7 +39,7 @@ const CartDrawer = () => {
           <DrawerHeader>Cart</DrawerHeader>
 
           <DrawerBody>
-            <CartList />
+            <CartList cartDetails={cartDetails} />
           </DrawerBody>
 
           <DrawerFooter>

@@ -4,40 +4,38 @@ import {
   HStack,
   IconButton,
   Image,
-  Spinner,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import useProduct from "../hooks/useProduct";
+import { CartDetail } from "../entities/CartDetails";
 import calculateDiscountPrice from "../services/calculateDiscountedPrice";
 import formatPrice from "../services/formatPrice";
 import type { CartItem } from "../store/cartStore";
 import useCartStore from "../store/cartStore";
 import QuantitySelector from "./QuantitySelector";
 
-const CartItem = ({ item }: { item: CartItem }) => {
-  const { data: product, isLoading } = useProduct(item.productId);
-
+const CartItem = ({ item }: { item: CartDetail }) => {
   const selectItem = useCartStore((s) => s.changeSelectItem);
   const deleteItem = useCartStore((s) => s.deleteItem);
   const changeQuantity = useCartStore((s) => s.changeQuantity);
-
-  if (isLoading) return <Spinner />;
 
   return (
     <HStack gap={5} marginLeft={5}>
       <Checkbox
         isChecked={item.selected}
-        onChange={() => selectItem(item.productId, !item.selected)}
+        onChange={() => selectItem(item.product.id, !item.selected)}
       />
-      <Image src={product?.images[0]} boxSize={20} objectFit={"contain"} />
+      <Image src={item.product.images[0]} boxSize={20} objectFit={"contain"} />
       <Text w="180px" noOfLines={2}>
-        {product?.title}
+        {item.product.title}
       </Text>
       <VStack w="110px">
         <Text fontSize={"xl"}>
           {formatPrice(
-            calculateDiscountPrice(product?.price, product?.discountPercentage)
+            calculateDiscountPrice(
+              item.product.price,
+              item.product.discountPercentage
+            )
           )}
         </Text>
         <HStack>
@@ -46,15 +44,15 @@ const CartItem = ({ item }: { item: CartItem }) => {
             textDecoration={"line-through"}
             color={"gray.500"}
           >
-            {formatPrice(product?.price)}
+            {formatPrice(item.product.price)}
           </Text>
-          <Text fontSize={"sm"}>-{product?.discountPercentage}%</Text>
+          <Text fontSize={"sm"}>-{item.product.discountPercentage}%</Text>
         </HStack>
       </VStack>
       <QuantitySelector
         refValue={item.quantity}
         onChange={(quantity) =>
-          changeQuantity({ productId: item.productId, quantity: quantity })
+          changeQuantity({ productId: item.product.id, quantity: quantity })
         }
       />
       <IconButton
@@ -62,7 +60,7 @@ const CartItem = ({ item }: { item: CartItem }) => {
         icon={<DeleteIcon />}
         colorScheme="red"
         variant="ghost"
-        onClick={() => deleteItem(item.productId)}
+        onClick={() => deleteItem(item.product.id)}
       />
     </HStack>
   );

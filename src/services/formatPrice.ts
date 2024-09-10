@@ -4,7 +4,7 @@ const formatPrice = (price?: number) => {
       currency: 'USD',
     });
 
-    return price ? formatter.format(price) : 0;
+    return price !== undefined ? formatter.format(price) : 0;
 }
 
 export default formatPrice;

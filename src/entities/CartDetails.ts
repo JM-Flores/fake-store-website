@@ -1,6 +1,6 @@
 import Product from "./Product";
 
-interface CartDetail {
+export interface CartDetail {
     product: Product;
     quantity: number;
     selected: boolean;
