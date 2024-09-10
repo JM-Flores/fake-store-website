@@ -61,7 +61,8 @@ const CartItem = ({ item }: { item: CartItem }) => {
       <IconButton
         aria-label="Cart"
         icon={<DeleteIcon />}
-        variant="solid"
+        colorScheme="red"
+        variant="ghost"
         onClick={() => deleteItem(item.productId)}
       />
     </HStack>
