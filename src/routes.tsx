@@ -3,7 +3,7 @@ import Layout from "./pages/Layout";
 import ProductsListingPage from "./pages/ProductsListingPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import HomePage from "./pages/HomePage";
-import CheckoutPage from "./pages/CheckOutPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const router = createBrowserRouter([
   {

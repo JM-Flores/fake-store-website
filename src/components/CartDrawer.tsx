@@ -43,11 +43,12 @@ const CartDrawer = () => {
           <DrawerHeader>Cart</DrawerHeader>
 
           <DrawerBody>
-            {!error && isLoading ? (
-              <Spinner />
-            ) : (
-              <CartList cartDetails={cartDetails} />
-            )}
+            {!error &&
+              (isLoading ? (
+                <Spinner />
+              ) : (
+                <CartList cartDetails={cartDetails} />
+              ))}
           </DrawerBody>
 
           <DrawerFooter>
