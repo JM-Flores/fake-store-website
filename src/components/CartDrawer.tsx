@@ -7,14 +7,22 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
+  HStack,
   IconButton,
+  Text,
   useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
 import { FaShoppingCart } from "react-icons/fa";
 import CartList from "./CartList";
+import useCartDetails from "../hooks/useCartDetails";
+import getCartTotalPrice from "../services/getCartTotalPrice";
+import formatPrice from "../services/formatPrice";
 
 const CartDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const cartDetails = useCartDetails();
 
   return (
     <>
@@ -35,10 +43,20 @@ const CartDrawer = () => {
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme="blue">Checkout</Button>
+            <VStack alignItems={"end"}>
+              <HStack alignItems={"baseline"}>
+                <Text>Total</Text>
+                <Text fontSize={"2xl"} fontWeight={"bold"}>
+                  {formatPrice(getCartTotalPrice(cartDetails))}
+                </Text>
+              </HStack>
+              <HStack>
+                <Button variant="outline" mr={3} onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button colorScheme="blue">Checkout</Button>
+              </HStack>
+            </VStack>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

@@ -91,7 +91,7 @@ const useCartStore = create<CartStore>(set=> ({
         const store = useCartStore.getState() as CartStore;
         return store.cartItems.every((item) => item.selected === true);
       },
-    clearAll: () => set(() => ({cartItems: []}))
+    clearAll: () => set(() => ({cartItems: []})),
 }));
 
 if (process.env.NODE_ENV === 'development') {
