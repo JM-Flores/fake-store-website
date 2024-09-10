@@ -9,6 +9,7 @@ import {
   DrawerOverlay,
   HStack,
   IconButton,
+  Spinner,
   Text,
   useDisclosure,
   VStack,
@@ -22,7 +23,7 @@ import formatPrice from "../services/formatPrice";
 const CartDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const cartDetails = useCartDetails();
+  const { cartDetails, error, isLoading } = useCartDetails();
 
   return (
     <>
@@ -39,7 +40,11 @@ const CartDrawer = () => {
           <DrawerHeader>Cart</DrawerHeader>
 
           <DrawerBody>
-            <CartList cartDetails={cartDetails} />
+            {!error && isLoading ? (
+              <Spinner />
+            ) : (
+              <CartList cartDetails={cartDetails} />
+            )}
           </DrawerBody>
 
           <DrawerFooter>
@@ -47,7 +52,11 @@ const CartDrawer = () => {
               <HStack alignItems={"baseline"}>
                 <Text>Total</Text>
                 <Text fontSize={"2xl"} fontWeight={"bold"}>
-                  {formatPrice(getCartTotalPrice(cartDetails))}
+                  {!error && isLoading ? (
+                    <Spinner />
+                  ) : (
+                    formatPrice(getCartTotalPrice(cartDetails))
+                  )}
                 </Text>
               </HStack>
               <HStack>

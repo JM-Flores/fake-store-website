@@ -10,20 +10,32 @@ const useCartDetails = () => {
   const cartItems = useCartStore((s) => s.cartItems);
 
   const [cartDetails, setCartDetails] = useState<CartDetails>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-      const fetchData = async () => {
-        const productPromises = await Promise.all(cartItems.map(async (item) => {
-          const product = await apiClient.get(item.productId);
-          return { product, quantity: item.quantity, selected: item.selected || false };
-        }));
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const productPromises = await Promise.all(
+          cartItems.map(async (item) => {
+            const product = await apiClient.get(item.productId);
+            return { product, quantity: item.quantity, selected: item.selected || false };
+          })
+        );
         setCartDetails(productPromises);
-      };
-  
-      fetchData();
-    }, [cartItems]);
+        setError(null); // Clear any previous errors if successful
+      } catch (err) {
+        setError("Failed to fetch cart details");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  return cartDetails;
+    fetchData();
+  }, [cartItems]);
+
+  return { cartDetails, isLoading, error };
 }
 
 export default useCartDetails;
