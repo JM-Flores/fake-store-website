@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Checkbox,
   HStack,
@@ -9,7 +8,6 @@ import {
 } from "@chakra-ui/react";
 import useCartStore from "../store/cartStore";
 import CartItem from "./CartItem";
-import { useState } from "react";
 
 const CartList = () => {
   const cart = useCartStore((s) => s.cartItems);

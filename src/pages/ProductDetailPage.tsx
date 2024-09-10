@@ -26,7 +26,7 @@ const ProductDetailPage = () => {
 
   const [quantity, setQuantity] = useState(1);
 
-  if (error || !product?.id) throw error;
+  if (error || !productId) throw error;
   if (isLoading) return <Spinner />;
 
   return (
@@ -102,7 +102,7 @@ const ProductDetailPage = () => {
               color={"white"}
               fontWeight={"normal"}
               _hover={{ bg: "orange.500" }}
-              item={{ productId: product?.id, quantity: quantity }}
+              item={{ productId: parseInt(productId), quantity: quantity }}
             />
           </HStack>
           <Divider />

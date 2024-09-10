@@ -10,22 +10,24 @@ const NavBar = () => {
   const resetQuery = useProductQueryStore((s) => s.resetQuery);
 
   return (
-    <HStack background={"gray.900"} paddingX={4}>
-      <Box
-        overflow="hidden"
-        width="100px"
-        height="60px"
-        display="flex"
-        onClick={() => {
-          navigate("/");
-          resetQuery();
-        }}
-      >
-        <Image src={shopLogo} />
-      </Box>
-      <SearchInput />
-      <CartDrawer />
-    </HStack>
+    <>
+      <HStack background={"gray.900"} paddingX={4}>
+        <Box
+          overflow="hidden"
+          width="100px"
+          height="60px"
+          display="flex"
+          onClick={() => {
+            navigate("/");
+            resetQuery();
+          }}
+        >
+          <Image src={shopLogo} />
+        </Box>
+        <SearchInput />
+        <CartDrawer />
+      </HStack>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
+import { DeleteIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Checkbox,
   HStack,
   IconButton,
@@ -9,12 +9,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import useProduct from "../hooks/useProduct";
-import type { CartItem } from "../store/cartStore";
-import formatPrice from "../services/formatPrice";
 import calculateDiscountPrice from "../services/calculateDiscountedPrice";
-import QuantitySelector from "./QuantitySelector";
+import formatPrice from "../services/formatPrice";
+import type { CartItem } from "../store/cartStore";
 import useCartStore from "../store/cartStore";
-import { DeleteIcon } from "@chakra-ui/icons";
+import QuantitySelector from "./QuantitySelector";
 
 const CartItem = ({ item }: { item: CartItem }) => {
   const { data: product, isLoading } = useProduct(item.productId);

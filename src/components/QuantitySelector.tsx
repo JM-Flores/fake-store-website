@@ -24,7 +24,7 @@ const QuantitySelector = ({ refValue, onChange }: Props) => {
       min: 1,
       max: cartItemMaxQuantity,
       precision: 0,
-      onChange: (valAsString, valAsNumber) => {
+      onChange: (_valAsString, valAsNumber) => {
         if (onChange) onChange(valAsNumber);
         if (!refValue) setValue(valAsNumber);
       },
