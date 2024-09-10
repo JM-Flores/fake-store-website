@@ -27,9 +27,13 @@ const AddToCartButton = forwardRef(
       setAlertStatus(status);
       onOpen();
       setTimeout(() => {
-        onClose();
-        setAlertMessage(null);
+        handleAlertClose();
       }, 3000);
+    };
+
+    const handleAlertClose = () => {
+      onClose();
+      setAlertMessage(null);
     };
 
     const handleAddToCart = (event: React.MouseEvent) => {
@@ -46,7 +50,7 @@ const AddToCartButton = forwardRef(
             status={alertStatus}
             isOpen={isOpen}
             message={alertMessage}
-            onClose={onClose}
+            onClose={handleAlertClose}
           />
         )}
 

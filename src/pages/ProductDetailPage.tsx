@@ -16,13 +16,17 @@ import Rating from "../components/Rating";
 import useProduct from "../hooks/useProduct";
 import calculateDiscountPrice from "../services/calculateDiscountedPrice";
 import formatPrice from "../services/formatPrice";
+import AddToCartButton from "../components/AddToCartButton";
+import { useState } from "react";
 
 const ProductDetailPage = () => {
   const { id: productId } = useParams();
 
   const { data: product, error, isLoading } = useProduct(parseInt(productId!));
 
-  if (error) throw error;
+  const [quantity, setQuantity] = useState(1);
+
+  if (error || !product?.id) throw error;
   if (isLoading) return <Spinner />;
 
   return (
@@ -78,7 +82,10 @@ const ProductDetailPage = () => {
           </Box>
           <Divider />
           <HStack>
-            <QuantitySelector />
+            <QuantitySelector
+              refValue={quantity}
+              onChange={(value) => setQuantity(value)}
+            />
             <Text>{product?.stock} left</Text>
           </HStack>
           <HStack>
@@ -90,14 +97,13 @@ const ProductDetailPage = () => {
             >
               Buy Now
             </Button>
-            <Button
+            <AddToCartButton
               background={"orange.400"}
               color={"white"}
               fontWeight={"normal"}
               _hover={{ bg: "orange.500" }}
-            >
-              Add to Cart
-            </Button>
+              item={{ productId: product?.id, quantity: quantity }}
+            />
           </HStack>
           <Divider />
           <Heading as={"h2"} fontWeight={"md"} fontSize={"xl"}>
