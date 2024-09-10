@@ -9,20 +9,22 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import AddToCartButton from "../components/AddToCartButton";
 import ProductImageSlide from "../components/ProductImageSlide";
 import QuantitySelector from "../components/QuantitySelector";
 import Rating from "../components/Rating";
 import useProduct from "../hooks/useProduct";
 import calculateDiscountPrice from "../services/calculateDiscountedPrice";
 import formatPrice from "../services/formatPrice";
-import AddToCartButton from "../components/AddToCartButton";
-import { useState } from "react";
 
 const ProductDetailPage = () => {
   const { id: productId } = useParams();
 
   const { data: product, error, isLoading } = useProduct(parseInt(productId!));
+
+  const navigate = useNavigate();
 
   const [quantity, setQuantity] = useState(1);
 
@@ -94,6 +96,9 @@ const ProductDetailPage = () => {
               color={"white"}
               fontWeight={"normal"}
               _hover={{ bg: "yellow.500" }}
+              onClick={() =>
+                navigate(`/checkout?id=${productId}&quantity=${quantity}`)
+              }
             >
               Buy Now
             </Button>

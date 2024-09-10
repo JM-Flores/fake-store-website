@@ -19,8 +19,11 @@ import CartList from "./CartList";
 import useCartDetails from "../hooks/useCartDetails";
 import getCartTotalPrice from "../services/getCartTotalPrice";
 import formatPrice from "../services/formatPrice";
+import { useNavigate } from "react-router-dom";
 
 const CartDrawer = () => {
+  const navigate = useNavigate();
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { cartDetails, error, isLoading } = useCartDetails();
@@ -63,7 +66,12 @@ const CartDrawer = () => {
                 <Button variant="outline" mr={3} onClick={onClose}>
                   Cancel
                 </Button>
-                <Button colorScheme="blue">Checkout</Button>
+                <Button
+                  colorScheme="blue"
+                  onClick={() => navigate("/checkout")}
+                >
+                  Checkout
+                </Button>
               </HStack>
             </VStack>
           </DrawerFooter>
