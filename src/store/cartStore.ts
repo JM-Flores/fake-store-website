@@ -1,3 +1,4 @@
+import { mountStoreDevtool } from "simple-zustand-devtools";
 import { create } from "zustand";
 
 export interface CartItem {
@@ -31,7 +32,13 @@ const useCartStore = create<CartStore>(set=> ({
         {productId: 170, quantity: 1},
     ],
     addItem: (item) => set((store) => ({cartItems: {...store.cartItems}})),
-    changeQuantity: (item) => set((store) => ({cartItems: {...store.cartItems}})),
+    changeQuantity: (item) => set((store) => ({
+        cartItems: store.cartItems.map((cartItem) =>
+            cartItem.productId === item.productId
+                ? { ...cartItem, quantity: item.quantity }
+                : cartItem
+        ),
+    })),
     deleteItem: (productId) => set((store) => ({
         cartItems: store.cartItems.filter((item) => item.productId !== productId)
     })),
@@ -54,5 +61,9 @@ const useCartStore = create<CartStore>(set=> ({
       },
     clearAll: () => set(() => ({cartItems: []}))
 }));
+
+if (process.env.NODE_ENV === 'development') {
+    mountStoreDevtool('Cart Store', useCartStore);
+  }
 
 export default useCartStore;

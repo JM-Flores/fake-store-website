@@ -21,6 +21,7 @@ const CartItem = ({ item }: { item: CartItem }) => {
 
   const selectItem = useCartStore((s) => s.changeSelectItem);
   const deleteItem = useCartStore((s) => s.deleteItem);
+  const changeQuantity = useCartStore((s) => s.changeQuantity);
 
   if (isLoading) return <Spinner />;
 
@@ -51,7 +52,12 @@ const CartItem = ({ item }: { item: CartItem }) => {
           <Text fontSize={"sm"}>-{product?.discountPercentage}%</Text>
         </HStack>
       </VStack>
-      <QuantitySelector />
+      <QuantitySelector
+        refValue={item.quantity}
+        onChange={(quantity) =>
+          changeQuantity({ productId: item.productId, quantity: quantity })
+        }
+      />
       <IconButton
         aria-label="Cart"
         icon={<DeleteIcon />}
