@@ -8,15 +8,13 @@ import {
   DrawerHeader,
   DrawerOverlay,
   IconButton,
-  Input,
   useDisclosure,
 } from "@chakra-ui/react";
-import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import CartList from "./CartList";
 
 const CartDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
 
   return (
     <>
@@ -26,14 +24,14 @@ const CartDrawer = () => {
         variant="solid"
         onClick={onOpen}
       />
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={"md"}>
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={"lg"}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>Cart</DrawerHeader>
 
           <DrawerBody>
-            <Input placeholder="Type here..." />
+            <CartList />
           </DrawerBody>
 
           <DrawerFooter>

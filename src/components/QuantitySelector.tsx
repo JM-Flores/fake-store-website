@@ -13,7 +13,6 @@ const QuantitySelector = () => {
   const inc = getIncrementButtonProps();
   const dec = getDecrementButtonProps();
   const input = getInputProps({
-    readOnly: true,
     width: "40px",
     paddingX: 0,
     textAlign: "center",
