@@ -11,8 +11,8 @@ export interface CartItem {
 
 interface CartStore {
     cartItems: CartItem[];
-    addItem: (item: CartItem) => void;
-    changeQuantity: (item: CartItem) => void;
+    addItem: (item: CartItem) => boolean;
+    changeQuantity: (item: CartItem) => boolean;
     deleteItem: (productId: number) => void;
     changeSelectItem: (productId: number, isSelect: boolean) => void;
     changeSelectAll: (isSelect: boolean) => void;
@@ -28,42 +28,47 @@ const useCartStore = create<CartStore>(set=> ({
         {productId: 167, quantity: 1},
         {productId: 171, quantity: 1},
     ],
-    addItem: (item) => set((store) => {
-        const itemExists = store.cartItems.find(cartItem => cartItem.productId === item.productId);
-        const newQuantity = itemExists ? itemExists.quantity + item.quantity : item.quantity;
+    addItem: (item) => {
+            let notExceedMaxQuantity = true;
 
-        if (newQuantity > cartItemMaxQuantity) {
-            console.log('EXCEEDED MAX QUANTITY')
-            return store;
-        }
+            set((store) => {
+                const itemExists = store.cartItems.find(cartItem => cartItem.productId === item.productId);
+                const newQuantity = itemExists ? itemExists.quantity + item.quantity : item.quantity;
 
-        if (itemExists) {
-            return {
-                cartItems: store.cartItems.map(cartItem =>
-                    cartItem.productId === item.productId
-                        ? { ...cartItem, quantity: newQuantity}
-                        : cartItem
-                ),
-            };
-        } else {
-            return {
-                cartItems: [...store.cartItems, item],
-            };
-        }
-    }),
+                if (newQuantity > cartItemMaxQuantity) {
+                    notExceedMaxQuantity = false;
+                }
+
+                if (itemExists) {
+                    return {
+                        cartItems: store.cartItems.map(cartItem =>
+                            cartItem.productId === item.productId
+                                ? { ...cartItem, quantity: newQuantity}
+                                : cartItem
+                        ),
+                    };
+                } else {
+                    return {
+                        cartItems: [...store.cartItems, item],
+                    };
+                }
+            })
+            return notExceedMaxQuantity;
+        },
     changeQuantity: (item) => { 
+        //Return false if quantity exceeded max.
         if (item.quantity > cartItemMaxQuantity) {
-            console.log('EXCEEDED MAX QUANTITY')
-            return null
-        };
+            return false;
+        }
 
-        return (set((store) => ({
+        (set((store) => ({
         cartItems: store.cartItems.map((cartItem) =>
             cartItem.productId === item.productId
                 ? { ...cartItem, quantity: item.quantity }
                 : cartItem
         ),
         })))
+        return true;
     },
     deleteItem: (productId) => set((store) => ({
         cartItems: store.cartItems.filter((item) => item.productId !== productId)
