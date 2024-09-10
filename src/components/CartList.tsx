@@ -11,7 +11,6 @@ import CartItem from "./CartItem";
 import CartDetails from "../entities/CartDetails";
 
 const CartList = ({ cartDetails }: { cartDetails: CartDetails }) => {
-  const cart = useCartStore((s) => s.cartItems);
   const clearAll = useCartStore((s) => s.clearAll);
 
   const selectAll = useCartStore((s) => s.changeSelectAll);
