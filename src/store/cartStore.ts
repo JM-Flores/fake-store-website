@@ -13,7 +13,8 @@ interface CartStore {
     deleteItem: (productId: number) => void;
     changeSelectItem: (productId: number, isSelect: boolean) => void;
     changeSelectAll: (isSelect: boolean) => void;
-    clearItems: () => void;
+    isAllSelected: () => boolean;
+    clearAll: () => void;
 };
 
 const useCartStore = create<CartStore>(set=> ({
@@ -23,18 +24,33 @@ const useCartStore = create<CartStore>(set=> ({
         {productId: 3, quantity: 3},
         {productId: 167, quantity: 1},
         {productId: 171, quantity: 1},
-        {productId: 1, quantity: 1},
-        {productId: 2, quantity: 5},
-        {productId: 3, quantity: 3},
-        {productId: 167, quantity: 1},
-        {productId: 171, quantity: 1},
+        {productId: 4, quantity: 1},
+        {productId: 5, quantity: 5},
+        {productId: 6, quantity: 3},
+        {productId: 168, quantity: 1},
+        {productId: 170, quantity: 1},
     ],
     addItem: (item) => set((store) => ({cartItems: {...store.cartItems}})),
     changeQuantity: (item) => set((store) => ({cartItems: {...store.cartItems}})),
     deleteItem: (id) => set((store) => ({cartItems: {...store.cartItems}})),
-    changeSelectItem: (id, isSelect) => set((store) => ({cartItems: {...store.cartItems}})),
-    changeSelectAll: (isSelect) => set((store) => ({cartItems: {...store.cartItems}})),
-    clearItems: () => set(() => ({cartItems: []}))
+    changeSelectItem: (id, isSelect) => set((store) => ({
+        cartItems: store.cartItems.map((item) =>
+            item.productId === id
+              ? { ...item, selected: isSelect }
+              : item
+          ),
+    })),
+    changeSelectAll: (isSelect) => set((store) => ({
+        cartItems: store.cartItems.map((item) => ({
+            ...item,
+            selected: isSelect,
+          })),
+    })),
+    isAllSelected: () => {
+        const store = useCartStore.getState() as CartStore;
+        return store.cartItems.every((item) => item.selected === true);
+      },
+    clearAll: () => set(() => ({cartItems: []}))
 }));
 
 export default useCartStore;
