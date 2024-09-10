@@ -22,7 +22,7 @@ const NavBar = () => {
             resetQuery();
           }}
         >
-          <Image src={shopLogo} />
+          <Image src={shopLogo} _hover={{ cursor: "pointer" }} />
         </Box>
         <SearchInput />
         <CartDrawer />

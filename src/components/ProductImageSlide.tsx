@@ -54,6 +54,7 @@ const ProductImageSlide = ({ images }: { images: string[] }) => {
               _hover={{
                 borderColor: "gray.600",
                 transition: "border-color 0.2s ease-in-out",
+                cursor: "pointer",
               }}
             >
               <Image

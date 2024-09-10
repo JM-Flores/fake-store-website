@@ -32,6 +32,7 @@ const ProductCard = ({ product }: Props) => {
       overflow={"hidden"}
       boxShadow="none"
       _hover={{
+        cursor: "pointer",
         boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.2)",
         transition: "box-shadow 0.3s ease-in-out",
       }}

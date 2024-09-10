@@ -23,6 +23,7 @@ const SortSelector = () => {
       <Select
         value={selectedSortBy || sortOptions[0][0]}
         onChange={(event) => updateSortBy(event.target.value)}
+        _hover={{ cursor: "pointer" }}
       >
         {sortOptions.map((option) => (
           <option value={option[0]} key={option[0]}>
@@ -35,6 +36,7 @@ const SortSelector = () => {
         onChange={(event) =>
           updateSortOrder(event.target.value as "asc" | "desc")
         }
+        _hover={{ cursor: "pointer" }}
       >
         <option value={"desc"}>Descending</option>
         <option value={"asc"}>Ascending</option>

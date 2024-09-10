@@ -25,8 +25,6 @@ const useCartStore = create<CartStore>(set=> ({
         {productId: 1, quantity: 1},
         {productId: 2, quantity: 5},
         {productId: 3, quantity: 3},
-        {productId: 167, quantity: 1},
-        {productId: 171, quantity: 1},
     ],
     addItem: (item) => {
             let notExceedMaxQuantity = true;
