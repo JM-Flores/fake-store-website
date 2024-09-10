@@ -1,6 +1,8 @@
 import { mountStoreDevtool } from "simple-zustand-devtools";
 import { create } from "zustand";
 
+export const cartItemMaxQuantity = 100;
+
 export interface CartItem {
     productId: number;
     quantity: number;
@@ -25,20 +27,44 @@ const useCartStore = create<CartStore>(set=> ({
         {productId: 3, quantity: 3},
         {productId: 167, quantity: 1},
         {productId: 171, quantity: 1},
-        {productId: 4, quantity: 1},
-        {productId: 5, quantity: 5},
-        {productId: 6, quantity: 3},
-        {productId: 168, quantity: 1},
-        {productId: 170, quantity: 1},
     ],
-    addItem: (item) => set((store) => ({cartItems: {...store.cartItems}})),
-    changeQuantity: (item) => set((store) => ({
+    addItem: (item) => set((store) => {
+        const itemExists = store.cartItems.find(cartItem => cartItem.productId === item.productId);
+        const newQuantity = itemExists ? itemExists.quantity + item.quantity : item.quantity;
+
+        if (newQuantity > cartItemMaxQuantity) {
+            console.log('EXCEEDED MAX QUANTITY')
+            return store;
+        }
+
+        if (itemExists) {
+            return {
+                cartItems: store.cartItems.map(cartItem =>
+                    cartItem.productId === item.productId
+                        ? { ...cartItem, quantity: newQuantity}
+                        : cartItem
+                ),
+            };
+        } else {
+            return {
+                cartItems: [...store.cartItems, item],
+            };
+        }
+    }),
+    changeQuantity: (item) => { 
+        if (item.quantity > cartItemMaxQuantity) {
+            console.log('EXCEEDED MAX QUANTITY')
+            return null
+        };
+
+        return (set((store) => ({
         cartItems: store.cartItems.map((cartItem) =>
             cartItem.productId === item.productId
                 ? { ...cartItem, quantity: item.quantity }
                 : cartItem
         ),
-    })),
+        })))
+    },
     deleteItem: (productId) => set((store) => ({
         cartItems: store.cartItems.filter((item) => item.productId !== productId)
     })),

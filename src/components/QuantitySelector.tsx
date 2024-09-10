@@ -1,5 +1,6 @@
 import { Button, HStack, Input, useNumberInput } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { cartItemMaxQuantity } from "../store/cartStore";
 
 interface Props {
   refValue?: number;
@@ -21,7 +22,7 @@ const QuantitySelector = ({ refValue, onChange }: Props) => {
       step: 1,
       defaultValue: 1,
       min: 1,
-      max: 100,
+      max: cartItemMaxQuantity,
       precision: 0,
       onChange: (valAsString, valAsNumber) => {
         if (onChange) onChange(valAsNumber);
