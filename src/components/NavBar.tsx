@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import shopLogo from "../assets/shop-logo.svg";
 import useProductQueryStore from "../store/productQueryStore";
 import SearchInput from "./SearchInput";
+import CartDrawer from "./CartDrawer";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const NavBar = () => {
         <Image src={shopLogo} />
       </Box>
       <SearchInput />
+      <CartDrawer />
     </HStack>
   );
 };
