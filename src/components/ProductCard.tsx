@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Card,
   CardBody,
   Heading,
@@ -8,12 +7,12 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import Product from "../entities/Product";
-import Rating from "./Rating";
-import { Link, useNavigate } from "react-router-dom";
 import formatPrice from "../services/formatPrice";
+import AddToCartButton from "./AddToCartButton";
 import DiscountBadge from "./DiscountBadge";
-import useCartStore from "../store/cartStore";
+import Rating from "./Rating";
 
 interface Props {
   product: Product;
@@ -24,13 +23,6 @@ const ProductCard = ({ product }: Props) => {
 
   const handleCardClick = () => {
     navigate(`/products/${product.id}`);
-  };
-
-  const addToCart = useCartStore((s) => s.addItem);
-
-  const handleAddToCart = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    addToCart({ productId: product.id, quantity: 1 });
   };
 
   return (
@@ -62,16 +54,14 @@ const ProductCard = ({ product }: Props) => {
           </Box>
         </HStack>
         <Rating rating={product.rating} />
-        <Button
+        <AddToCartButton
           background={"yellow.300"}
           fontSize={12}
           height={"auto"}
           padding={2}
           marginTop={2}
-          onClick={handleAddToCart}
-        >
-          Add to Cart
-        </Button>
+          item={{ productId: product.id, quantity: 1 }}
+        />
       </CardBody>
     </Card>
   );

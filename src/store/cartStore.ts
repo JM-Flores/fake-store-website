@@ -37,6 +37,7 @@ const useCartStore = create<CartStore>(set=> ({
 
                 if (newQuantity > cartItemMaxQuantity) {
                     notExceedMaxQuantity = false;
+                    return store;
                 }
 
                 if (itemExists) {
