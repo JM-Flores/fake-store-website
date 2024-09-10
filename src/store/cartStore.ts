@@ -32,7 +32,9 @@ const useCartStore = create<CartStore>(set=> ({
     ],
     addItem: (item) => set((store) => ({cartItems: {...store.cartItems}})),
     changeQuantity: (item) => set((store) => ({cartItems: {...store.cartItems}})),
-    deleteItem: (id) => set((store) => ({cartItems: {...store.cartItems}})),
+    deleteItem: (productId) => set((store) => ({
+        cartItems: store.cartItems.filter((item) => item.productId !== productId)
+    })),
     changeSelectItem: (id, isSelect) => set((store) => ({
         cartItems: store.cartItems.map((item) =>
             item.productId === id

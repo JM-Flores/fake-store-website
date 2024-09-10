@@ -2,6 +2,7 @@ import {
   Box,
   Checkbox,
   HStack,
+  IconButton,
   Image,
   Spinner,
   Text,
@@ -13,11 +14,13 @@ import formatPrice from "../services/formatPrice";
 import calculateDiscountPrice from "../services/calculateDiscountedPrice";
 import QuantitySelector from "./QuantitySelector";
 import useCartStore from "../store/cartStore";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 const CartItem = ({ item }: { item: CartItem }) => {
   const { data: product, isLoading } = useProduct(item.productId);
 
   const selectItem = useCartStore((s) => s.changeSelectItem);
+  const deleteItem = useCartStore((s) => s.deleteItem);
 
   if (isLoading) return <Spinner />;
 
@@ -49,6 +52,12 @@ const CartItem = ({ item }: { item: CartItem }) => {
         </HStack>
       </VStack>
       <QuantitySelector />
+      <IconButton
+        aria-label="Cart"
+        icon={<DeleteIcon />}
+        variant="solid"
+        onClick={() => deleteItem(item.productId)}
+      />
     </HStack>
   );
 };
