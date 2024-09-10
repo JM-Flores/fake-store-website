@@ -12,15 +12,21 @@ import type { CartItem } from "../store/cartStore";
 import formatPrice from "../services/formatPrice";
 import calculateDiscountPrice from "../services/calculateDiscountedPrice";
 import QuantitySelector from "./QuantitySelector";
+import useCartStore from "../store/cartStore";
 
 const CartItem = ({ item }: { item: CartItem }) => {
   const { data: product, isLoading } = useProduct(item.productId);
+
+  const selectItem = useCartStore((s) => s.changeSelectItem);
 
   if (isLoading) return <Spinner />;
 
   return (
     <HStack gap={5} marginLeft={5}>
-      <Checkbox isChecked={item.selected} />
+      <Checkbox
+        isChecked={item.selected}
+        onChange={() => selectItem(item.productId, !item.selected)}
+      />
       <Image src={product?.images[0]} boxSize={20} objectFit={"contain"} />
       <Text w="180px" noOfLines={2}>
         {product?.title}
