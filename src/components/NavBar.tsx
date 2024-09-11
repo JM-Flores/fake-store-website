@@ -11,7 +11,7 @@ const NavBar = () => {
 
   return (
     <>
-      <HStack background={"gray.900"} paddingX={4}>
+      <HStack background={"gray.900"} paddingX={4} height={"60px"}>
         <Box
           overflow="hidden"
           width="100px"
