@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  HStack,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -84,20 +85,21 @@ const Invoice = ({ invoice, isOpen, onClose }: Props) => {
                 <Tr>
                   <Th></Th>
                   <Th></Th>
+                  <Th></Th>
                   <Th>
-                    <Box paddingTop={5} paddingBottom={2}>
-                      <Text>Total</Text>
-                    </Box>
-                  </Th>
-                  <Th>
-                    <Text
-                      fontSize={"2xl"}
-                      fontWeight={"bold"}
-                      textAlign={"right"}
-                      paddingTop={1}
-                    >
-                      {formatPrice(invoice.totalPrice)}
-                    </Text>
+                    <HStack display={"flex"} justifyContent={"right"}>
+                      <Box paddingTop={5} paddingBottom={2}>
+                        <Text>Total</Text>
+                      </Box>
+                      <Text
+                        fontSize={"2xl"}
+                        fontWeight={"bold"}
+                        textAlign={"right"}
+                        paddingTop={1}
+                      >
+                        {formatPrice(invoice.totalPrice)}
+                      </Text>
+                    </HStack>
                   </Th>
                 </Tr>
               </Tfoot>
