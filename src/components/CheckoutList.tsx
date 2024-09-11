@@ -30,114 +30,112 @@ interface Props {
 
 const CheckoutList = ({ cartDetails, error, isLoading }: Props) => {
   return (
-    <Stack divider={<StackDivider borderColor="gray.200" />}>
-      <TableContainer>
-        <Table
-          variant="simple"
-          sx={{
-            "th, td": {
-              textAlign: "center", // Centers the text in all columns
-            },
-          }}
-        >
-          <Thead>
-            <Tr>
-              <Th>Product</Th>
-              <Th></Th>
-              <Th>Unit Price</Th>
-              <Th>Quantity</Th>
-              <Th>
-                <Text textAlign={"right"}>Total Price</Text>
-              </Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {cartDetails.map((item) =>
-              item.selected ? (
-                <Tr>
-                  <Td>
-                    <Image
-                      src={item.product.images[0]}
-                      boxSize={20}
-                      objectFit={"contain"}
-                    />
-                  </Td>
-                  <Td>
-                    <Text noOfLines={2} textAlign={"left"}>
-                      {item.product.title}
-                    </Text>
-                  </Td>
-                  <Td>
-                    <VStack w="110px" marginX={"auto"}>
-                      <Text fontSize={"xl"}>
-                        {formatPrice(
-                          calculateDiscountPrice(
-                            item.product.price,
-                            item.product.discountPercentage
-                          )
-                        )}
-                      </Text>
-                      <HStack>
-                        <Text
-                          fontSize={"sm"}
-                          textDecoration={"line-through"}
-                          color={"gray.500"}
-                        >
-                          {formatPrice(item.product.price)}
-                        </Text>
-                        <Text fontSize={"sm"}>
-                          -{item.product.discountPercentage}%
-                        </Text>
-                      </HStack>
-                    </VStack>
-                  </Td>
-                  <Td>
-                    <Text>{item.quantity}</Text>
-                  </Td>
-                  <Td>
-                    <Text fontSize={"xl"} textAlign={"right"}>
+    <TableContainer>
+      <Table
+        variant="simple"
+        sx={{
+          "th, td": {
+            textAlign: "center", // Centers the text in all columns
+          },
+        }}
+      >
+        <Thead>
+          <Tr>
+            <Th>Product</Th>
+            <Th></Th>
+            <Th>Unit Price</Th>
+            <Th>Quantity</Th>
+            <Th>
+              <Text textAlign={"right"}>Total Price</Text>
+            </Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {cartDetails.map((item) =>
+            item.selected ? (
+              <Tr>
+                <Td>
+                  <Image
+                    src={item.product.images[0]}
+                    boxSize={20}
+                    objectFit={"contain"}
+                  />
+                </Td>
+                <Td>
+                  <Text noOfLines={2} textAlign={"left"}>
+                    {item.product.title}
+                  </Text>
+                </Td>
+                <Td>
+                  <VStack w="110px" marginX={"auto"}>
+                    <Text fontSize={"xl"}>
                       {formatPrice(
                         calculateDiscountPrice(
                           item.product.price,
                           item.product.discountPercentage
-                        ) * item.quantity
+                        )
                       )}
                     </Text>
-                  </Td>
-                </Tr>
-              ) : null
-            )}
-          </Tbody>
-          <Tfoot>
-            <Tr>
-              <Th></Th>
-              <Th></Th>
-              <Th></Th>
-              <Th>
-                <Box paddingTop={5} paddingBottom={2}>
-                  <Text>Total</Text>
-                </Box>
-              </Th>
-              <Th>
-                <Text
-                  fontSize={"2xl"}
-                  fontWeight={"bold"}
-                  textAlign={"right"}
-                  paddingTop={1}
-                >
-                  {!error &&
-                    (false ? (
-                      <Spinner />
-                    ) : (
-                      formatPrice(getCartTotalPrice(cartDetails))
-                    ))}
-                </Text>
-              </Th>
-            </Tr>
-          </Tfoot>
-        </Table>
-      </TableContainer>
-    </Stack>
+                    <HStack>
+                      <Text
+                        fontSize={"sm"}
+                        textDecoration={"line-through"}
+                        color={"gray.500"}
+                      >
+                        {formatPrice(item.product.price)}
+                      </Text>
+                      <Text fontSize={"sm"}>
+                        -{item.product.discountPercentage}%
+                      </Text>
+                    </HStack>
+                  </VStack>
+                </Td>
+                <Td>
+                  <Text>{item.quantity}</Text>
+                </Td>
+                <Td>
+                  <Text fontSize={"xl"} textAlign={"right"}>
+                    {formatPrice(
+                      calculateDiscountPrice(
+                        item.product.price,
+                        item.product.discountPercentage
+                      ) * item.quantity
+                    )}
+                  </Text>
+                </Td>
+              </Tr>
+            ) : null
+          )}
+        </Tbody>
+        <Tfoot>
+          <Tr>
+            <Th></Th>
+            <Th></Th>
+            <Th></Th>
+            <Th>
+              <Box paddingTop={5} paddingBottom={2}>
+                <Text>Total</Text>
+              </Box>
+            </Th>
+            <Th>
+              <Text
+                fontSize={"2xl"}
+                fontWeight={"bold"}
+                textAlign={"right"}
+                paddingTop={1}
+              >
+                {!error &&
+                  (false ? (
+                    <Spinner />
+                  ) : (
+                    formatPrice(getCartTotalPrice(cartDetails))
+                  ))}
+              </Text>
+            </Th>
+          </Tr>
+        </Tfoot>
+      </Table>
+    </TableContainer>
   );
 };
 
