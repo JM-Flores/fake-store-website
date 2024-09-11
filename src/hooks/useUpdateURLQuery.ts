@@ -8,8 +8,12 @@ const useUpdateURLQuery = () => {
         // If search text exist, clear all URL params
         const newSearchParams = !query.searchText ? new URLSearchParams(searchParams) : new URLSearchParams({});
 
-        // If other params exist, clear search text
-        if (query.category || query.sortBy || query.sortOrder) newSearchParams.delete('searchText');
+        // If other params exist, clear search text and reset page
+        if (query.category || query.sortBy || query.sortOrder){ 
+            newSearchParams.delete('searchText');
+            query.page = 1;
+        }
+
     
         // Iterate over the properties in the query object
         for (const [key, value] of Object.entries(query)) {

@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import ProductFetchResponse from "../entities/ProductsFetchResponse";
 import APIClient from "../services/apiClient";
 import useProductQueryStore from "../store/productQueryStore";
@@ -19,16 +19,21 @@ const useProducts = () => {
 
             const response = productQuery.searchText ? 
                 await apiClient.getAll({ 
-                    params: {q: productQuery.searchText} 
+                    params: {
+                        q: productQuery.searchText,
+                    } 
                 }) :
                 await apiClient.getAll({
                     params: {
                         sortBy: productQuery.sortBy,
-                        order: productQuery.sortOrder
+                        order: productQuery.sortOrder,
+                        limit: productQuery.limit,
+                        skip: (productQuery.limit && productQuery.page) ? productQuery.limit * (productQuery.page -1) : undefined
                     }
                 });
-            return response.products;
-        }
+            return response;
+        },
+        placeholderData: keepPreviousData,
     });
 }
 

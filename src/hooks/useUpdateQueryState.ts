@@ -12,15 +12,20 @@ const useUpdateQueryState = () => {
             setQuery(defaultQuery);
         }
         else {
+            const category = searchParams.get('category');
+            const sortBy = searchParams.get('sortBy');
+            const sortOrder = searchParams.get('sortOrder') as SortOrder | undefined;
+            const searchText = searchParams.get('searchText');
+            const page = parseInt(searchParams.get('page') || '0')
 
             const query: ProductQuery = {
-                category: searchParams.get('category') || undefined,
-                sortBy: searchParams.get('sortBy') || undefined,
-                sortOrder: searchParams.get('sortOrder') as SortOrder || undefined,
-                searchText: searchParams.get('searchText') || undefined,
+                ...defaultQuery,
+                ...(category ? { category } : {}),
+                ...(sortBy ? { sortBy } : {}),
+                ...(sortOrder ? { sortOrder } : {}),
+                ...(searchText ? { searchText } : {}),
+                ...(page ? { page } : {}),
             };
-
-            // console.log(query);
 
             setQuery(query);
         }

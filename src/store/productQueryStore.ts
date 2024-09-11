@@ -9,6 +9,8 @@ export interface ProductQuery {
     sortBy?: string;
     sortOrder?: SortOrder;
     searchText?: string;
+    limit?: number;
+    page?: number;
 }
 
 interface ProductQueryStore {
@@ -21,7 +23,12 @@ interface ProductQueryStore {
     resetQuery: () => void;
 }
 
-export const defaultQuery = { sortBy: sortOptions[0][0], sortOrder: 'desc' as SortOrder};
+export const defaultQuery = { 
+    sortBy: sortOptions[0][0], 
+    sortOrder: 'desc' as SortOrder,
+    limit: 30,
+    page: 1
+};
 
 const useProductQueryStore = create<ProductQueryStore>(set => ({
     productQuery: defaultQuery,
