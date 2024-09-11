@@ -46,7 +46,9 @@ const CheckoutList = ({ cartDetails, error, isLoading }: Props) => {
               <Th></Th>
               <Th>Unit Price</Th>
               <Th>Quantity</Th>
-              <Th>Total Price</Th>
+              <Th>
+                <Text textAlign={"right"}>Total Price</Text>
+              </Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -93,7 +95,7 @@ const CheckoutList = ({ cartDetails, error, isLoading }: Props) => {
                     <Text>{item.quantity}</Text>
                   </Td>
                   <Td>
-                    <Text fontSize={"xl"}>
+                    <Text fontSize={"xl"} textAlign={"right"}>
                       {formatPrice(
                         calculateDiscountPrice(
                           item.product.price,
@@ -111,9 +113,18 @@ const CheckoutList = ({ cartDetails, error, isLoading }: Props) => {
               <Th></Th>
               <Th></Th>
               <Th></Th>
-              <Th>Total</Th>
               <Th>
-                <Text fontSize={"2xl"} fontWeight={"bold"}>
+                <Box paddingTop={5} paddingBottom={2}>
+                  <Text>Total</Text>
+                </Box>
+              </Th>
+              <Th>
+                <Text
+                  fontSize={"2xl"}
+                  fontWeight={"bold"}
+                  textAlign={"right"}
+                  paddingTop={1}
+                >
                   {!error &&
                     (false ? (
                       <Spinner />

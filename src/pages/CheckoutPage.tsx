@@ -55,10 +55,9 @@ const CheckoutPage = () => {
           display={"flex"}
           justifyContent={"space-between"}
           alignItems={"center"}
-          mt={4}
         >
           <Box />
-          <Button colorScheme="green" marginRight={10}>
+          <Button colorScheme="green" marginRight={5}>
             Place Order
           </Button>
         </Box>
