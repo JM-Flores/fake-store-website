@@ -20,6 +20,7 @@ import useCartDetails from "../hooks/useCartDetails";
 import getCartTotalPrice from "../services/getCartTotalPrice";
 import formatPrice from "../services/formatPrice";
 import { useNavigate } from "react-router-dom";
+import useAlertStore from "../store/alertStore";
 
 const CartDrawer = () => {
   const navigate = useNavigate();
@@ -27,6 +28,10 @@ const CartDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { cartDetails, error, isLoading } = useCartDetails();
+
+  const totalPrice = getCartTotalPrice(cartDetails);
+
+  const showAlert = useAlertStore((s) => s.showAlert);
 
   return (
     <>
@@ -56,11 +61,7 @@ const CartDrawer = () => {
               <HStack alignItems={"baseline"}>
                 <Text>Total</Text>
                 <Text fontSize={"2xl"} fontWeight={"bold"}>
-                  {!error && isLoading ? (
-                    <Spinner />
-                  ) : (
-                    formatPrice(getCartTotalPrice(cartDetails))
-                  )}
+                  {!error && isLoading ? <Spinner /> : formatPrice(totalPrice)}
                 </Text>
               </HStack>
               <HStack>
@@ -69,7 +70,14 @@ const CartDrawer = () => {
                 </Button>
                 <Button
                   colorScheme="blue"
-                  onClick={() => navigate("/checkout")}
+                  onClick={() => {
+                    if (totalPrice <= 0) {
+                      showAlert("error", "No selected items");
+                    } else {
+                      onClose();
+                      navigate("/checkout");
+                    }
+                  }}
                 >
                   Checkout
                 </Button>
