@@ -53,7 +53,7 @@ const CheckoutList = ({ cartDetails, error, isLoading }: Props) => {
         <Tbody>
           {cartDetails.map((item) =>
             item.selected ? (
-              <Tr>
+              <Tr key={item.product.id}>
                 <Td>
                   <Image
                     src={item.product.images[0]}
