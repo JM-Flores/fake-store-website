@@ -1,5 +1,6 @@
 import CartDetails from "../entities/CartDetails";
 import Invoice, { ProductInvoice } from "../entities/Invoice";
+import calculateDiscountPrice from "./calculateDiscountedPrice";
 import getCartTotalPrice from "./getCartTotalPrice";
 
 const createInvoice = (cart: CartDetails)=> {
@@ -8,8 +9,8 @@ const createInvoice = (cart: CartDetails)=> {
         if (item.selected) products.push({
             id: item.product.id,
             name: item.product.title,
-            price: item.product.id,
-            quantity: item.product.id,
+            price: calculateDiscountPrice(item.product.price, item.product.discountPercentage),
+            quantity: item.quantity,
         })
     })
     const totalPrice = getCartTotalPrice(cart);

@@ -48,7 +48,9 @@ const Invoice = ({ invoice, isOpen, onClose }: Props) => {
             >
               <Thead>
                 <Tr>
-                  <Th>Product</Th>
+                  <Th>
+                    <Text textAlign={"left"}>Product</Text>
+                  </Th>
                   <Th>Unit Price</Th>
                   <Th>Quantity</Th>
                   <Th>
