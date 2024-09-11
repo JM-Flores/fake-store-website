@@ -20,9 +20,18 @@ const useUpdateURLQuery = () => {
             if (!value) newSearchParams.delete(key)
             else newSearchParams.set(key, value);
         }
-    
+
+        // Convert to an array of [key, value] pairs
+        const paramsArray = Array.from(newSearchParams.entries());
+
+        // Sort the array by key
+        paramsArray.sort(([keyA], [keyB]) => keyA.localeCompare(keyB));
+
+        // Reconstruct URLSearchParams from the sorted array
+        const sortedSearchParams = new URLSearchParams(paramsArray);
+        
         // Update the URL with the new query parameters
-        setSearchParams(newSearchParams);
+        setSearchParams(sortedSearchParams);
     }
 
     return { updateSearchParams };
