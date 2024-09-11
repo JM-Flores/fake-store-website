@@ -37,7 +37,9 @@ const PlaceOrderButton = forwardRef(
 
     return (
       <>
-        <Button onClick={handleOnClick}>Place Order</Button>
+        <Button onClick={handleOnClick} {...props}>
+          Place Order
+        </Button>
 
         <Invoice isOpen={isOpen} onClose={onClose} invoice={invoiceResult} />
       </>
