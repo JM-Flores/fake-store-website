@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, HStack, Spinner, Text } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
 import CheckoutList from "../components/CheckoutList";
 import CartDetails from "../entities/CartDetails";
@@ -14,7 +14,7 @@ const CheckoutPage = () => {
 
   let cart: CartDetails = [];
   let isLoading = false;
-  let error: string | Error | null = null;
+  let error: Error | null = null;
 
   if (productId && quantity) {
     const {
@@ -46,16 +46,22 @@ const CheckoutPage = () => {
       display={"flex"}
       justifyContent={"center"}
     >
-      <Box background={"white"} width={"1000px"} padding={5}>
+      <Box background={"white"} width={"1000px"} paddingY={10} paddingX={10}>
+        <Heading marginLeft={1} marginBottom={5}>
+          Order Summary
+        </Heading>
         <CheckoutList cartDetails={cart} />
-        <HStack alignItems={"baseline"}>
-          <Text>Total</Text>
-          <Text fontSize={"2xl"} fontWeight={"bold"}>
-            {!error &&
-              (false ? <Spinner /> : formatPrice(getCartTotalPrice(cart)))}
-          </Text>
-        </HStack>
-        <Button>Place Order</Button>
+        <Box
+          display={"flex"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+          mt={4}
+        >
+          <Box />
+          <Button colorScheme="green" marginRight={10}>
+            Place Order
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

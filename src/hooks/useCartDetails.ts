@@ -11,7 +11,7 @@ const useCartDetails = () => {
 
   const [cartDetails, setCartDetails] = useState<CartDetails>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +26,7 @@ const useCartDetails = () => {
         setCartDetails(productPromises);
         setError(null); // Clear any previous errors if successful
       } catch (err) {
-        setError("Failed to fetch cart details");
+        setError(new Error("Failed to fetch cart details"));
       } finally {
         setIsLoading(false);
       }
