@@ -38,7 +38,8 @@ const CartDrawer = () => {
       <IconButton
         aria-label="Cart"
         icon={<FaShoppingCart />}
-        variant="solid"
+        variant="ghost"
+        color="gray.200"
         onClick={onOpen}
       />
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={"lg"}>

@@ -21,7 +21,7 @@ const AlertSlide = () => {
     if (isOpen) {
       const timer = setTimeout(() => {
         hideAlert();
-      }, 3000); // Automatically hide alert after 3 seconds
+      }, 3 * 1000); // Automatically hide alert after 3 seconds
 
       return () => clearTimeout(timer);
     }
@@ -39,7 +39,7 @@ const AlertSlide = () => {
         bottom={0}
         width="50%"
         mx="auto"
-        zIndex="banner"
+        zIndex="sticky"
         left={0}
         right={0}
       >

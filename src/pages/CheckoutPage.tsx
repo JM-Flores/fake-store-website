@@ -1,11 +1,10 @@
-import { Box, Button, Heading } from "@chakra-ui/react";
+import { Box, Heading, Spinner } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
 import CheckoutList from "../components/CheckoutList";
+import PlaceOrderButton from "../components/PlaceOrderButton";
 import CartDetails from "../entities/CartDetails";
 import useCartDetails from "../hooks/useCartDetails";
 import useProduct from "../hooks/useProduct";
-import createInvoice from "../services/createInvoice";
-import PlaceOrderButton from "../components/PlaceOrderButton";
 
 const CheckoutPage = () => {
   const [searchParams] = useSearchParams();
@@ -38,6 +37,10 @@ const CheckoutPage = () => {
 
     cart = cartDetails;
   }
+
+  if (isLoading) return <Spinner />;
+
+  if (error) throw error;
 
   return (
     <Box

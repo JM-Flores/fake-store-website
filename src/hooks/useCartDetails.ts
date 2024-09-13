@@ -8,11 +8,11 @@ const apiClient = new APIClient<Product>('');
 
 const useCartDetails = () => {
   const cartItems = useCartStore((s) => s.cartItems);
-
-  const [cartDetails, setCartDetails] = useState<CartDetails>([]);
+  
+  const [cartDetails, setCartDetails] = useState<CartDetails>([] as CartDetails);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {

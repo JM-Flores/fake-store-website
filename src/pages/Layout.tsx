@@ -9,13 +9,13 @@ const Layout = () => {
 
   return (
     <>
-      {alertIsOpen && <AlertSlide />}
-      <Box position="fixed" top={0} left={0} width="100%" zIndex="sticky">
+      <Box position="fixed" zIndex="2">
+        {alertIsOpen && <AlertSlide />}
+      </Box>
+      <Box position="fixed" top={0} left={0} width="100%" zIndex="1">
         <NavBar />
       </Box>
-      <Box pt="60px">
-        {" "}
-        {/* Adjust padding-top to match the height of your navbar */}
+      <Box pt="60px" zIndex="0">
         <Outlet />
       </Box>
     </>
