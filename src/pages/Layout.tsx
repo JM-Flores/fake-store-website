@@ -9,7 +9,7 @@ const Layout = () => {
 
   return (
     <>
-      <Box position="fixed" zIndex="2">
+      <Box position="fixed" zIndex="2000">
         {alertIsOpen && <AlertSlide />}
       </Box>
       <Box position="fixed" top={0} left={0} width="100%" zIndex="1">
