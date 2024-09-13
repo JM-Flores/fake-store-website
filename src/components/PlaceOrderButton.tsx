@@ -16,7 +16,7 @@ interface Props extends ButtonProps {
 }
 
 const PlaceOrderButton = forwardRef(
-  ({ cart, ...props }: Props, ref: ForwardedRef<HTMLButtonElement>) => {
+  ({ cart, ...props }: Props, _ref: ForwardedRef<HTMLButtonElement>) => {
     const showAlert = useAlertStore((s) => s.showAlert);
 
     const { isOpen, onOpen, onClose } = useDisclosure();

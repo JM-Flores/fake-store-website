@@ -1,11 +1,8 @@
 import {
   Box,
-  Heading,
   HStack,
   Image,
   Spinner,
-  Stack,
-  StackDivider,
   Table,
   TableContainer,
   Tbody,
@@ -29,6 +26,8 @@ interface Props {
 }
 
 const CheckoutList = ({ cartDetails, error, isLoading }: Props) => {
+  if (isLoading) return <Spinner />;
+
   return (
     <TableContainer>
       <Table
