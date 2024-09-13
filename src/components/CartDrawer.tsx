@@ -41,6 +41,10 @@ const CartDrawer = () => {
         variant="ghost"
         color="gray.200"
         onClick={onOpen}
+        _hover={{
+          background: "transparent",
+          transform: "scale(1.3)",
+        }}
       />
       <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={"lg"}>
         <DrawerOverlay />
