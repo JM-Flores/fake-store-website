@@ -19,10 +19,13 @@ import CartList from "./CartList";
 import useCartDetails from "../hooks/useCartDetails";
 import getCartTotalPrice from "../services/getCartTotalPrice";
 import formatPrice from "../services/formatPrice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import useAlertStore from "../store/alertStore";
 
 const CartDrawer = () => {
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+
   const navigate = useNavigate();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -40,7 +43,14 @@ const CartDrawer = () => {
         icon={<FaShoppingCart />}
         variant="ghost"
         color="gray.200"
-        onClick={onOpen}
+        onClick={() => {
+          onOpen();
+          if (
+            location.pathname === "/checkout" &&
+            searchParams.toString() !== ""
+          )
+            navigate("/products");
+        }}
         _hover={{
           background: "transparent",
           transform: "scale(1.3)",
